@@ -95,9 +95,38 @@ function processTravelAgencyCommands(commands) {
             // TODO: Implement Excursion
         }
 
-        var Vacation = {
-            // TODO: Implement Vacation
-        }
+        var Vacation = (function() {
+            function Vacation(location, accommodation) {
+                this.setLocation(location);
+                if (accommodation) {
+                    this.setAccommodation(accommodation);
+                }
+            }
+
+            Vacation.prototype.getLocation = function() {
+                return this._location;
+            }
+
+            Vacation.prototype.setLocation = function(location) {
+                if (typeof location !== 'string' || location === '') {
+                    throw new Error('Location must be a non-empty string!');
+                }
+                this._location = location;
+            }
+
+            Vacation.prototype.getAccommodation = function() {
+                return this._accommodation;
+            }
+
+            Vacation.prototype.setAccommodation = function(accommodation) {
+                if (typeof accommodation !== 'string' || accommodation === '') {
+                    throw new Error('Accommodation must be a non-empty string!');
+                }
+                this._accommodation = accommodation;
+            }
+
+            return Vacation;
+        }());
 
         var Cruise = {
             // TODO: Implement Cruise
