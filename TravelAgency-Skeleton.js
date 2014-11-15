@@ -237,9 +237,39 @@ function processTravelAgencyCommands(commands) {
             return Vacation;
         }());
 
-        var Cruise = {
-            // TODO: Implement Cruise
-        }
+        var Cruise = (function() {
+            function Cruise(name, startDate, endDate, price, startDock) {
+                // Call parent constructor
+                var base = Excursion.apply(this, [name, startDate, endDate, price]);
+
+                if (startDock) {
+                    base.setStartDock(startDock);
+                }
+
+                base.setTransport('cruise liner');
+
+                return base;
+            }
+
+            // Inherit from Excursion
+            Cruise.prototype = Object.create(Excursion.prototype);
+            Cruise.prototype.constructor = Cruise;
+
+            Cruise.prototype.getStartDock = function() {
+                return this._startDock;
+            }
+
+            Cruise.prototype.setStartDock = function(startDock) {
+                if (typeof startDock !== 'string' || startDock === '') {
+                    throw new Error('StartDock must be a non-empty string!');
+                }
+                this._startDock = startDock;
+
+                return this;
+            }
+
+            return Cruise;
+        }());
 
         return {
             Destination: Destination
