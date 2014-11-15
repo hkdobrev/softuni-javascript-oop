@@ -119,6 +119,11 @@ function processTravelAgencyCommands(commands) {
                 if ( ! (endDate instanceof Date)) {
                     throw new Error('EndDate must be a Date object!');
                 }
+
+                if (this._startDate && this._endDate < this._startDate) {
+                    throw new Error('End date must be later than start date!');
+                }
+
                 this._endDate = endDate;
 
                 return this;
