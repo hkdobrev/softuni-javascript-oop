@@ -272,7 +272,11 @@ function processTravelAgencyCommands(commands) {
         }());
 
         return {
-            Destination: Destination
+            Destination: Destination,
+            Vacation: Vacation,
+            Travel: Travel,
+            Excursion: Excursion,
+            Cruise: Cruise
         }
     }());
 
