@@ -107,9 +107,86 @@ function processTravelAgencyCommands(commands) {
             return Travel;
         }());
 
-        var Excursion = {
-            // TODO: Implement Excursion
-        }
+        var Excursion = (function() {
+            function Excursion(name, startDate, endDate, price, transport) {
+                // Call parent constructor
+                var base = Travel.apply(this, arguments);
+
+                this._destinations = [];
+
+                if (transport) {
+                    base.setTransport(transport);
+                }
+
+                return base;
+            }
+
+            // Inherit from Travel
+            Excursion.prototype = Object.create(Travel.prototype);
+            Excursion.prototype.constructor = Excursion;
+
+            Excursion.prototype.getTransport = function() {
+                return this._transport;
+            }
+
+            Excursion.prototype.setTransport = function(transport) {
+                if (typeof transport !== 'string' || transport === '') {
+                    throw new Error('Transport must be a non-empty string!');
+                }
+                this._transport = transport;
+
+                return this;
+            }
+
+            Excursion.prototype.getDestinations = function() {
+                return this._destinations;
+            }
+
+            Excursion.prototype.addDestination = function(destination) {
+                if ( ! destination instanceof Destination) {
+                    throw new Error('Destination must be an instance of Destination!');
+                }
+
+                this._destinations.push(destination);
+
+                return this;
+            }
+
+            Excursion.prototype.removeDestination = function(destination) {
+                if ( ! destination instanceof Destination) {
+                    throw new Error('Destination must be an instance of Destination!');
+                }
+
+                var destinationIndex = this._destinations.indexOf(destination);
+
+                if (destinationIndex === -1) {
+                    throw new Error('No such destination!');
+                }
+
+                // Remove the destination at the index found
+                this._destinations.splice(destinationIndex, 1);
+
+                return this;
+            }
+
+            Excursion.prototype.toString = function () {
+                return Travel.prototype.toString.apply(this, arguments) +
+                    (
+                        this.getTransport() ?
+                        ',transport=' + this.getTransport() :
+                        ''
+                    ) + "\n" +
+                    ' ** Destinations: ' + (
+                        this._destinations.length ?
+                            this._destinations.map(function(destination) {
+                                return destination.toString();
+                            }).join(';') :
+                            '-'
+                    );
+            }
+
+            return Excursion;
+        }());
 
         var Vacation = (function() {
             function Vacation(name, startDate, endDate, price, location, accommodation) {
