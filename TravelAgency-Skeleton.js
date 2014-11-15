@@ -379,6 +379,32 @@ function processTravelAgencyCommands(commands) {
                 return "Removed destination from " + travel.getName() + ".";
             }
 
+            function processFilterTravelsCommand (command) {
+                var travels = _travels;
+
+                if (command['type'] !== 'all') {
+                    travels = _travels.filter(function(travel) {
+                        return travel.constructor.name.toLowerCase() === command['type'] &&
+                            travel.getPrice() >= command['price-min'] &&
+                            travel.getPrice() <= command['price-max'];
+                    });
+                }
+
+                travels.sort(function (a, b) {
+                    if (a.getStartDate() < b.getStartDate()) {
+                        return a;
+                    }
+
+                    if (a.getStartDate > b.getStartDate()) {
+                        return b;
+                    }
+
+                    return a.getName().localeCompare(b);
+                });
+
+                return formatTravelsQuery(travels);
+            }
+
             function getTravelByName(name) {
                 var i;
 
@@ -419,7 +445,8 @@ function processTravelAgencyCommands(commands) {
                 processDeleteCommand: processDeleteCommand,
                 processListCommand: processListCommand,
                 processAddDestinationCommand: processAddDestinationCommand,
-                processRemoveDestinationCommand: processRemoveDestinationCommand
+                processRemoveDestinationCommand: processRemoveDestinationCommand,
+                processFilterTravelsCommand: processFilterTravelsCommand
             }
         }());
 
