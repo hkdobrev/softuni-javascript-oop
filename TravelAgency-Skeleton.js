@@ -61,6 +61,8 @@ function processTravelAgencyCommands(commands) {
                     throw new Error('Name must be a non-empty string!');
                 }
                 this._name = name;
+
+                return this;
             }
 
             Travel.prototype.getPrice = function() {
@@ -72,6 +74,8 @@ function processTravelAgencyCommands(commands) {
                     throw new Error('Price must be non-negative number!');
                 }
                 this._price = price;
+
+                return this;
             }
 
             Travel.prototype.getStartDate = function() {
@@ -83,6 +87,8 @@ function processTravelAgencyCommands(commands) {
                     throw new Error('StartDate must be a Date object!');
                 }
                 this._startDate = startDate;
+
+                return this;
             }
 
             Travel.prototype.getEndDate = function() {
@@ -94,6 +100,8 @@ function processTravelAgencyCommands(commands) {
                     throw new Error('EndDate must be a Date object!');
                 }
                 this._endDate = endDate;
+
+                return this;
             }
 
             Travel.prototype.toString = function() {
@@ -213,6 +221,8 @@ function processTravelAgencyCommands(commands) {
                     throw new Error('Location must be a non-empty string!');
                 }
                 this._location = location;
+
+                return this;
             }
 
             Vacation.prototype.getAccommodation = function() {
@@ -224,6 +234,8 @@ function processTravelAgencyCommands(commands) {
                     throw new Error('Accommodation must be a non-empty string!');
                 }
                 this._accommodation = accommodation;
+
+                return this;
             }
 
             Vacation.prototype.toString = function () {
