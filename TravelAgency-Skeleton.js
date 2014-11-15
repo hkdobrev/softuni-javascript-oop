@@ -40,8 +40,16 @@ function processTravelAgencyCommands(commands) {
         }());
 
         var Travel = (function() {
-            function Travel() {
-                throw new Error('You cannot instantiate Travel directly! Use a sub type.');
+            function Travel(name, startDate, endDate, price) {
+                if (this.constructor === Travel) {
+                    throw new Error('You cannot instantiate Travel directly! Use a sub type.');
+                }
+                this.setName(name);
+                this.setStartDate(startDate);
+                this.setEndDate(endDate);
+                this.setPrice(price);
+
+                return this;
             }
 
             Travel.prototype.getName = function() {
