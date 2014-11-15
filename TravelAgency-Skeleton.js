@@ -151,6 +151,12 @@ function processTravelAgencyCommands(commands) {
                 this._accommodation = accommodation;
             }
 
+            Vacation.prototype.toString = function () {
+                return Travel.prototype.toString.apply(this, arguments) +
+                    ',location=' + this.getLocation() +
+                    (this.getAccommodation() ? ',accommodation=' + this.getAccommodation() : '');
+            }
+
             return Vacation;
         }());
 
