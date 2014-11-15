@@ -104,12 +104,22 @@ function processTravelAgencyCommands(commands) {
         }
 
         var Vacation = (function() {
-            function Vacation(location, accommodation) {
-                this.setLocation(location);
+            function Vacation(name, startDate, endDate, price, location, accommodation) {
+                // Call parent constructor
+                var base = Travel.apply(this, arguments);
+
+                base.setLocation(location);
+
                 if (accommodation) {
-                    this.setAccommodation(accommodation);
+                    base.setAccommodation(accommodation);
                 }
+
+                return base;
             }
+
+            // Inherit from Travel
+            Vacation.prototype = Object.create(Travel.prototype);
+            Vacation.prototype.constructor = Vacation;
 
             Vacation.prototype.getLocation = function() {
                 return this._location;
