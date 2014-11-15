@@ -238,13 +238,11 @@ function processTravelAgencyCommands(commands) {
         var Cruise = (function() {
             function Cruise(name, startDate, endDate, price, startDock) {
                 // Call parent constructor
-                var base = Excursion.apply(this, [name, startDate, endDate, price]);
+                var base = Excursion.apply(this, [name, startDate, endDate, price, 'cruise liner']);
 
                 if (startDock) {
                     base.setStartDock(startDock);
                 }
-
-                base.setTransport('cruise liner');
 
                 return base;
             }
