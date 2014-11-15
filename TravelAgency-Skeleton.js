@@ -2,6 +2,11 @@ function processTravelAgencyCommands(commands) {
     'use strict';
 
     var Models = (function() {
+
+        function isValidString (value) {
+            return typeof value === 'string' && value !== '';
+        }
+
         var Destination = (function() {
             function Destination(location, landmark) {
                 this.setLocation(location);
@@ -13,7 +18,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Destination.prototype.setLocation = function(location) {
-                if (location === undefined || location === "") {
+                if ( ! isValidString(location)) {
                     throw new Error("Location cannot be empty or undefined.");
                 }
                 this._location = location;
@@ -24,7 +29,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Destination.prototype.setLandmark = function(landmark) {
-                if (landmark === undefined || landmark == "") {
+                if ( ! isValidString(landmark)) {
                     throw new Error("Landmark cannot be empty or undefined.");
                 }
                 this._landmark = landmark;
@@ -57,7 +62,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Travel.prototype.setName = function(name) {
-                if (typeof name !== 'string' || name === '') {
+                if ( ! isValidString(name)) {
                     throw new Error('Name must be a non-empty string!');
                 }
                 this._name = name;
@@ -136,7 +141,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Excursion.prototype.setTransport = function(transport) {
-                if (typeof transport !== 'string' || transport === '') {
+                if ( ! isValidString(transport)) {
                     throw new Error('Transport must be a non-empty string!');
                 }
                 this._transport = transport;
@@ -217,7 +222,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Vacation.prototype.setLocation = function(location) {
-                if (typeof location !== 'string' || location === '') {
+                if ( ! isValidString(location)) {
                     throw new Error('Location must be a non-empty string!');
                 }
                 this._location = location;
@@ -230,7 +235,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Vacation.prototype.setAccommodation = function(accommodation) {
-                if (typeof accommodation !== 'string' || accommodation === '') {
+                if ( ! isValidString(accommodation)) {
                     throw new Error('Accommodation must be a non-empty string!');
                 }
                 this._accommodation = accommodation;
@@ -268,7 +273,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Cruise.prototype.setStartDock = function(startDock) {
-                if (typeof startDock !== 'string' || startDock === '') {
+                if ( ! isValidString(startDock)) {
                     throw new Error('StartDock must be a non-empty string!');
                 }
                 this._startDock = startDock;
