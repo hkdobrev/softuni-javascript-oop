@@ -431,11 +431,11 @@ function processTravelAgencyCommands(commands) {
 
                 travels.sort(function (a, b) {
                     if (a.getStartDate() < b.getStartDate()) {
-                        return a;
+                        return -1;
                     }
 
-                    if (a.getStartDate > b.getStartDate()) {
-                        return b;
+                    if (a.getStartDate() > b.getStartDate()) {
+                        return 1;
                     }
 
                     return a.getName().localeCompare(b);
