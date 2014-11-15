@@ -206,7 +206,7 @@ function processTravelAgencyCommands(commands) {
 
                 base.setLocation(location);
 
-                if (accommodation) {
+                if (accommodation !== undefined) {
                     base.setAccommodation(accommodation);
                 }
 
@@ -257,7 +257,7 @@ function processTravelAgencyCommands(commands) {
                 // Call parent constructor
                 var base = Excursion.apply(this, [name, startDate, endDate, price, 'cruise liner']);
 
-                if (startDock) {
+                if (startDock !== undefined) {
                     base.setStartDock(startDock);
                 }
 
