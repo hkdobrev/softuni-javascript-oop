@@ -96,6 +96,14 @@ function processTravelAgencyCommands(commands) {
                 this._endDate = endDate;
             }
 
+            Travel.prototype.toString = function() {
+                return ' * ' + this.constructor.name + ": " +
+                    'name=' + this.getName() +
+                    ',start-date=' + formatDate(this.getStartDate()) +
+                    ',end-date=' + formatDate(this.getEndDate()) +
+                    ',price=' + this.getPrice().toFixed(2);
+            }
+
             return Travel;
         }());
 
