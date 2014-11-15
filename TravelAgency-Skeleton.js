@@ -438,7 +438,7 @@ function processTravelAgencyCommands(commands) {
                         return 1;
                     }
 
-                    return a.getName().localeCompare(b);
+                    return (a < b ? -1 : 1);
                 });
 
                 return formatTravelsQuery(travels);
