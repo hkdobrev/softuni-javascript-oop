@@ -207,11 +207,7 @@ function processTravelAgencyCommands(commands) {
 
             Excursion.prototype.toString = function () {
                 return Travel.prototype.toString.apply(this, arguments) +
-                    (
-                        this.getTransport() ?
-                        ',transport=' + this.getTransport() :
-                        ''
-                    ) + "\n" +
+                    ',transport=' + this.getTransport() + "\n" +
                     ' ** Destinations: ' + (
                         this._destinations.length ?
                             this._destinations.map(function(destination) {
