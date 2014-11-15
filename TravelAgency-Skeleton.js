@@ -39,9 +39,57 @@ function processTravelAgencyCommands(commands) {
             return Destination;
         }());
 
-        var Travel = {
-            // TODO: Implement Travel
-        }
+        var Travel = (function() {
+            function Travel() {
+                throw new Error('You cannot instantiate Travel directly! Use a sub type.');
+            }
+
+            Travel.prototype.getName = function() {
+                return this._name;
+            }
+
+            Travel.prototype.setName = function(name) {
+                if (typeof name !== 'string' || name === '') {
+                    throw new Error('Name must be a non-empty string!');
+                }
+                this._name = name;
+            }
+
+            Travel.prototype.getPrice = function() {
+                return this._price;
+            }
+
+            Travel.prototype.setPrice = function(price) {
+                if (typeof price !== 'number' || price < 0) {
+                    throw new Error('Price must be non-negative number!');
+                }
+                this._price = price;
+            }
+
+            Travel.prototype.getStartDate = function() {
+                return this._startDate;
+            }
+
+            Travel.prototype.setStartDate = function(startDate) {
+                if ( ! startDate instanceof Date) {
+                    throw new Error('StartDate must be a Date object!');
+                }
+                this._startDate = startDate;
+            }
+
+            Travel.prototype.getEndDate = function() {
+                return this._endDate;
+            }
+
+            Travel.prototype.setEndDate = function(endDate) {
+                if ( ! endDate instanceof Date) {
+                    throw new Error('EndDate must be a Date object!');
+                }
+                this._endDate = endDate;
+            }
+
+            return Travel;
+        }());
 
         var Excursion = {
             // TODO: Implement Excursion
