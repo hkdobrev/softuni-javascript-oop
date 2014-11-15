@@ -425,8 +425,8 @@ function processTravelAgencyCommands(commands) {
             function processFilterTravelsCommand (command) {
                 var travels = _travels.filter(function(travel) {
                     return (command['type'] === 'all' || travel.constructor.name.toLowerCase() === command['type']) &&
-                        travel.getPrice() >= command['price-min'] &&
-                        travel.getPrice() <= command['price-max'];
+                        travel.getPrice() >= parseFloat(command['price-min']) &&
+                        travel.getPrice() <= parseFloat(command['price-max']);
                 });
 
                 travels.sort(function (a, b) {
