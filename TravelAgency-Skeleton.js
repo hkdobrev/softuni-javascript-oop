@@ -3,11 +3,21 @@ function processTravelAgencyCommands(commands) {
 
     var Models = (function() {
 
+        /**
+         * Check if a variable is a valid non-empty string
+         *
+         * @param  mixed  value
+         * @return Boolean
+         */
         function isValidString (value) {
             return typeof value === 'string' && value !== '';
         }
 
         var Destination = (function() {
+
+            /**
+             * @constructor
+             */
             function Destination(location, landmark) {
                 this.setLocation(location);
                 this.setLandmark(landmark);
@@ -45,6 +55,11 @@ function processTravelAgencyCommands(commands) {
         }());
 
         var Travel = (function() {
+
+            /**
+             * @abstract
+             * @constructor
+             */
             function Travel(name, startDate, endDate, price) {
                 if (this.constructor === Travel) {
                     throw new Error('You cannot instantiate Travel directly! Use a sub type.');
@@ -121,6 +136,11 @@ function processTravelAgencyCommands(commands) {
         }());
 
         var Excursion = (function() {
+
+            /**
+             * @extends Travel
+             * @constructor
+             */
             function Excursion(name, startDate, endDate, price, transport) {
                 // Call parent constructor
                 var base = Travel.apply(this, arguments);
@@ -200,6 +220,11 @@ function processTravelAgencyCommands(commands) {
         }());
 
         var Vacation = (function() {
+
+            /**
+             * @extends Travel
+             * @constructor
+             */
             function Vacation(name, startDate, endDate, price, location, accommodation) {
                 // Call parent constructor
                 var base = Travel.apply(this, arguments);
@@ -253,6 +278,11 @@ function processTravelAgencyCommands(commands) {
         }());
 
         var Cruise = (function() {
+
+            /**
+             * @extends Excursion
+             * @constructor
+             */
             function Cruise(name, startDate, endDate, price, startDock) {
                 // Call parent constructor
                 var base = Excursion.apply(this, [name, startDate, endDate, price, 'cruise liner']);
