@@ -88,7 +88,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Travel.prototype.setStartDate = function(startDate) {
-                if ( ! startDate instanceof Date) {
+                if ( ! (startDate instanceof Date)) {
                     throw new Error('StartDate must be a Date object!');
                 }
                 this._startDate = startDate;
@@ -101,7 +101,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Travel.prototype.setEndDate = function(endDate) {
-                if ( ! endDate instanceof Date) {
+                if ( ! (endDate instanceof Date)) {
                     throw new Error('EndDate must be a Date object!');
                 }
                 this._endDate = endDate;
@@ -154,7 +154,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Excursion.prototype.addDestination = function(destination) {
-                if ( ! destination instanceof Destination) {
+                if ( ! (destination instanceof Destination)) {
                     throw new Error('Destination must be an instance of Destination!');
                 }
 
@@ -164,7 +164,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Excursion.prototype.removeDestination = function(destination) {
-                if ( ! destination instanceof Destination) {
+                if ( ! (destination instanceof Destination)) {
                     throw new Error('Destination must be an instance of Destination!');
                 }
 
