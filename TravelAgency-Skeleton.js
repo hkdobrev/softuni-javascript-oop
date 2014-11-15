@@ -114,9 +114,7 @@ function processTravelAgencyCommands(commands) {
 
                 this._destinations = [];
 
-                if (transport) {
-                    base.setTransport(transport);
-                }
+                base.setTransport(transport);
 
                 return base;
             }
