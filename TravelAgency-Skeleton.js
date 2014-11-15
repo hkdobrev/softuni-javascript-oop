@@ -68,7 +68,7 @@ function processTravelAgencyCommands(commands) {
             }
 
             Travel.prototype.setPrice = function(price) {
-                if (typeof price !== 'number' || price < 0) {
+                if (isNaN(price) || typeof price !== 'number' || price < 0) {
                     throw new Error('Price must be non-negative number!');
                 }
                 this._price = price;
